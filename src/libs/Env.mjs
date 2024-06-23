@@ -1,0 +1,12 @@
+/* eslint-disable import/prefer-default-export */
+import { createEnv } from '@t3-oss/env-nextjs';
+
+// Don't add NODE_ENV into T3 Env, it changes the tree-shaking behavior
+export const Env = createEnv({
+  server: {},
+  client: {},
+  // You need to destructure all the keys manually
+  runtimeEnv: {},
+  skipValidation: !!process.env.SKIP_ENV_VALIDATION,
+  emptyStringAsUndefined: true,
+});
