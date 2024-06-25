@@ -1,3 +1,3 @@
-export default function Index() {
-  return <p>Looking for a SaaS Boilerplate? </p>;
+export default function AboutPage() {
+  return <p>Hi i&apos;m Tri ^.^</p>;
 }

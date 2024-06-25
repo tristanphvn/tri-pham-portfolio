@@ -9,7 +9,7 @@ test.describe('Navigation', () => {
       await expect(
         page.getByRole('heading', {
           name: 'Boilerplate Code for Your Next.js Project with Tailwind CSS',
-        }),
+        })
       ).toBeVisible();
 
       await percySnapshot(page, 'Homepage');
@@ -21,7 +21,7 @@ test.describe('Navigation', () => {
       await expect(
         page.getByRole('link', {
           name: 'About',
-        }),
+        })
       ).toBeVisible();
 
       await percySnapshot(page, 'About');
