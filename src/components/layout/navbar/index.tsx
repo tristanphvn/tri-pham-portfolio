@@ -26,7 +26,7 @@ const navbarList = [
 const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div
+    <nav
       className={clsx(
         { 'bg-opacity-30 drop-shadow-lg backdrop-blur-md': isScrolled },
         'mx-auto flex h-16 w-full flex-col items-center justify-center bg-white px-4'
@@ -63,7 +63,6 @@ const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
           </Button>
         </div>
       </div>
-
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -82,7 +81,7 @@ const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
           ))}
         </motion.div>
       )}
-    </div>
+    </nav>
   );
 };
 

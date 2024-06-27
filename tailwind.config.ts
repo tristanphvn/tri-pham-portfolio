@@ -18,6 +18,7 @@ export default {
       },
       colors: {
         primary: '#FF6464',
+        'yankees-blue': '#21243D',
       },
     },
   },
