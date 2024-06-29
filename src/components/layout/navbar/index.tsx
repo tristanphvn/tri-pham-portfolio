@@ -4,6 +4,7 @@ import { Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Button } from '@nextui-org/react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 import NavbarItem from './narbar-item';
@@ -72,12 +73,13 @@ const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
           className="absolute right-4 top-16 z-20 flex w-32 flex-col gap-y-2 rounded-md border border-gray-100 bg-white/30 p-1 shadow-lg backdrop-blur-md xl:hidden"
         >
           {navbarList.map((item) => (
-            <div
+            <Link
+              href={item.link}
               key={item.name}
               className={clsx('rounded-md px-2 hover:bg-primary')}
             >
               <p className="text-black hover:text-white">{item.name}</p>
-            </div>
+            </Link>
           ))}
         </motion.div>
       )}
