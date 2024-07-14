@@ -4,10 +4,10 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const AboutMe = () => {
   return (
-    <div className="flex h-auto w-full flex-col gap-y-5 py-4 xl:h-[500px] xl:flex-row">
+    <div className="flex h-auto w-full flex-col gap-y-5 xl:h-[450px] xl:flex-row">
       <div className="flex h-full w-full items-center justify-center xl:hidden">
         <div className="relative">
-          <div className="absolute -right-2 top-3 aspect-square w-80 rounded-full bg-yankees-blue/70 blur-md backdrop-blur" />
+          <div className="absolute -right-2 top-3 aspect-square w-80 rounded-full bg-yankees-blue/70 blur-md backdrop-blur dark:bg-white/40" />
           <LazyLoadImage
             src="/assets/images/my-avatar.jpg"
             className="aspect-square w-80 rounded-full object-cover object-top"
@@ -15,9 +15,9 @@ const AboutMe = () => {
           />
         </div>
       </div>
-      <div className="flex h-full w-full flex-col items-center justify-center gap-y-4 xl:w-2/3 xl:items-start">
-        <div className="flex flex-row items-center gap-x-2">
-          <p className="text-5xl font-bold text-yankees-blue">
+      <div className="flex h-full w-full flex-col items-center justify-center gap-y-8 xl:w-2/3 xl:items-start">
+        <div className="flex flex-row items-center gap-x-3">
+          <p className="text-5xl font-bold text-yankees-blue dark:text-white">
             Hi, I&apos;m Tri!
           </p>
           <motion.div
@@ -35,7 +35,7 @@ const AboutMe = () => {
             👋🏼
           </motion.div>
         </div>
-        <p className="w-2/3 text-center text-base font-light text-yankees-blue xl:text-start">
+        <p className="w-2/3 text-center text-justify text-base font-light text-yankees-blue dark:text-white xl:text-start">
           I was born in 2001. I am currently a Software Engineer with one year
           of experience in software development. I am passionate about
           technology and constantly strive to improve and expand my skills. I
@@ -51,7 +51,7 @@ const AboutMe = () => {
       </div>
       <div className="hidden h-full w-1/3 items-center justify-center xl:flex">
         <div className="relative">
-          <div className="absolute -right-2 top-3 aspect-square w-80 rounded-full bg-yankees-blue/70 blur-md backdrop-blur" />
+          <div className="absolute -right-2 top-3 aspect-square w-80 rounded-full bg-yankees-blue/70 blur-md backdrop-blur dark:bg-white/40" />
           <LazyLoadImage
             src="/assets/images/my-avatar.jpg"
             className="aspect-square w-80 rounded-full object-cover object-top"

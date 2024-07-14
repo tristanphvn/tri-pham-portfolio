@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
+import DarkModeToggle from '../dark-mode-toggle';
 import NavbarItem from './narbar-item';
 
 const navbarList = [
@@ -30,17 +31,20 @@ const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
     <nav
       className={clsx(
         { 'bg-opacity-30 drop-shadow-lg backdrop-blur-md': isScrolled },
-        'mx-auto flex h-16 w-full flex-col items-center justify-center bg-white px-4'
+        'mx-auto flex h-16 w-full flex-col items-center justify-center bg-white px-4 shadow-outside shadow-white/5 dark:bg-black/50'
       )}
     >
       <div className="flex h-16 w-full flex-row items-center xl:max-w-6xl">
         <div className="flex h-full w-1/2 items-center">
-          <p className="text-2xl font-medium text-black">Tri Pham</p>
+          <p className="text-2xl font-medium text-yankees-blue dark:text-white">
+            Tri Pham
+          </p>
         </div>
         <div className="hidden w-1/2 flex-row items-center justify-end gap-x-6 xl:flex">
           {navbarList.map((item) => (
             <NavbarItem key={item.name} item={item} />
           ))}
+          <DarkModeToggle />
         </div>
         <div className="flex w-1/2 flex-row items-center justify-end xl:hidden">
           <Button
@@ -78,9 +82,12 @@ const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
               key={item.name}
               className={clsx('rounded-md px-2 hover:bg-primary')}
             >
-              <p className="text-black hover:text-white">{item.name}</p>
+              <p className="text-yankees-blue hover:text-white dark:text-white">
+                {item.name}
+              </p>
             </Link>
           ))}
+          <DarkModeToggle />
         </motion.div>
       )}
     </nav>

@@ -13,7 +13,9 @@ const NavbarItem = ({ item }: { item: Item }) => {
   return (
     <Link
       href={link}
-      className={clsx(router === link ? 'text-primary' : 'text-black')}
+      className={clsx(
+        router === link ? 'text-primary' : 'text-black dark:text-white'
+      )}
     >
       <p className="text-xl font-medium">{name}</p>
     </Link>

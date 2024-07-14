@@ -30,7 +30,7 @@ export default function DefaultLayout(props: { children: React.ReactNode }) {
         <div className="fixed inset-0 left-0 top-0 z-10 h-16 w-full">
           <Navbar isScrolled={isScrolled} />
         </div>
-        <div className="mt-16 flex min-h-screen w-full xl:max-w-6xl">
+        <div className="flex min-h-screen w-full py-14 xl:max-w-6xl xl:pb-14">
           {props.children}
         </div>
         <Footer />

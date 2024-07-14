@@ -16,7 +16,10 @@ export const metadata: Metadata = {
   title: 'Tri Pham',
   description: 'Portfolio by Tri Pham',
   icons: {
-    icon: '/favicon.ico',
+    icon: {
+      url: '/favicon.ico',
+      type: 'image/png',
+    },
   },
 };
 
