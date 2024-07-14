@@ -3,14 +3,23 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import type { Metadata } from 'next';
+import { Poppins } from 'next/font/google';
 
 import Provider from './provider';
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+});
 
 export const metadata: Metadata = {
   title: 'Tri Pham',
   description: 'Portfolio by Tri Pham',
   icons: {
-    icon: '/favicon.ico',
+    icon: {
+      url: '/favicon.ico',
+      type: 'image/png',
+    },
   },
 };
 
@@ -20,7 +29,7 @@ export default function RootLayout(props: {
 }) {
   return (
     <html lang={props.params.locale}>
-      <body>
+      <body className={poppins.className}>
         <Provider>{props.children}</Provider>
       </body>
     </html>
