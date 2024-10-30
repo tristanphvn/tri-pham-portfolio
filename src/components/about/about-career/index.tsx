@@ -32,17 +32,9 @@ const AboutCasser = () => {
   ];
 
   return (
-    <div className="flex w-full flex-col gap-x-4 gap-y-5 px-10 xl:flex-row xl:px-0">
-      <div className="flex w-full flex-col gap-y-2 xl:w-1/3">
-        <p className="text-2xl font-normal text-yankees-blue dark:text-white">
-          My Career So Far
-        </p>
-        <p className="text-justify text-base font-light text-yankees-blue dark:text-white">
-          some text here!!!
-        </p>
-      </div>
-      <div className="flex w-full items-center justify-center xl:w-2/3">
-        <div className="grid grid-cols-6 gap-4 xl:grid-cols-4">
+    <div className="flex w-full flex-col gap-x-4 gap-y-5 px-10 xl:flex-row">
+      <div className="flex w-full items-center justify-center">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-6">
           {listFramework.map((item: IFramework) => (
             <motion.div
               whileHover={{ scale: 1.2 }}
@@ -52,7 +44,7 @@ const AboutCasser = () => {
             >
               <LazyLoadImage
                 src={item.logo}
-                className="h-8 w-8 object-cover"
+                className="aspect-square h-8 w-8 object-contain"
                 effect="blur"
               />
               <p>{item.name}</p>
