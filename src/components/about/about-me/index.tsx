@@ -1,5 +1,6 @@
 import { Button } from '@nextui-org/react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const AboutMe = () => {
@@ -36,15 +37,24 @@ const AboutMe = () => {
           </motion.div>
         </div>
         <p className="w-2/3 text-center text-justify text-base font-light text-yankees-blue dark:text-white xl:text-start">
-          I was born in 2001. I am currently a Software Engineer with one year
-          of experience in software development. I am passionate about
-          technology and constantly strive to improve and expand my skills. I
-          have experience building web applications and have worked on a project
-          where I developed a trusted solution. I am always looking for new
-          opportunities to learn and contribute to exciting projects.
+          I am a passionate Software Engineer with 2 years of experience in
+          full-stack development, specializing in Next.js and NestJS. I thrive
+          on creating responsive, user-friendly applications and have a solid
+          understanding of system design concepts. My expertise encompasses
+          frontend technologies like TypeScript and Tailwind CSS, alongside
+          backend development with Node.js. I am dedicated to continuous
+          learning and delivering high-quality solutions that enhance user
+          experiences. Explore my portfolio to see my work and projects!
         </p>
         <div>
-          <Button radius="md" size="lg" className="bg-primary text-white">
+          <Button
+            as={Link}
+            href="/tri-pham.pdf"
+            target="_blank"
+            radius="md"
+            size="lg"
+            className="bg-primary text-white"
+          >
             DOWNLOAD MY RESUME
           </Button>
         </div>
