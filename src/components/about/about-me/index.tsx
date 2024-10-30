@@ -6,7 +6,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 const AboutMe = () => {
   return (
     <div className="flex h-auto w-full flex-col gap-y-5 xl:h-[450px] xl:flex-row">
-      <div className="flex h-full w-full items-center justify-center xl:hidden">
+      <div className="mt-5 flex h-full w-full items-center justify-center xl:hidden">
         <div className="relative">
           <div className="absolute -right-2 top-3 aspect-square w-80 rounded-full bg-yankees-blue/70 blur-md backdrop-blur dark:bg-white/40" />
           <LazyLoadImage
