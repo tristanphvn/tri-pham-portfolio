@@ -1,9 +1,15 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
 
-import Footer from '@/components/layout/footer';
-import Navbar from '@/components/layout/navbar';
+const Footer = dynamic(() => import('@/components/layout/footer'), {
+  ssr: false,
+});
+
+const Navbar = dynamic(() => import('@/components/layout/navbar'), {
+  ssr: false,
+});
 
 export default function DefaultLayout(props: { children: React.ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
