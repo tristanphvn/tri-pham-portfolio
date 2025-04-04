@@ -4,17 +4,10 @@ import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import { Button } from '@nextui-org/react';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const DarkModeToggle = () => {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   const handleClick = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -23,7 +16,7 @@ const DarkModeToggle = () => {
   return (
     <Button isIconOnly className="bg-transparent" onClick={handleClick}>
       <motion.div
-        key={theme === 'dark' ? 'xmark' : 'bars'}
+        key={theme === 'dark' ? 'moon' : 'bars'}
         initial={{ opacity: 0, rotate: theme === 'dark' ? 180 : -180 }}
         animate={{ opacity: 1, rotate: 0 }}
         exit={{ opacity: 0, rotate: theme === 'dark' ? -180 : 180 }}
