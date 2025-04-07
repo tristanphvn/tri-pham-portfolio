@@ -23,12 +23,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout(props: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
+export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang={props.params.locale}>
+    <html lang="en">
       <body className={poppins.className}>
         <Provider>{props.children}</Provider>
       </body>
