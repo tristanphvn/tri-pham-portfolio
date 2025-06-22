@@ -1,39 +1,11 @@
 'use client';
 
 import { BookOpenIcon, CodeBracketIcon } from '@heroicons/react/24/outline';
-import Placeholder from '@tiptap/extension-placeholder';
-import { useEditor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
 import Link from 'next/link';
 import { useState } from 'react';
 
 const DocumentScreen = () => {
-  const [content, setContent] = useState('<p>Hello World! 🌎️</p>');
   const [activeTab, setActiveTab] = useState<'editor' | 'docs'>('docs');
-
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Placeholder.configure({
-        placeholder: 'Start writing your document...',
-      }),
-    ],
-    content,
-    onUpdate: ({ editor }) => {
-      setContent(editor.getHTML());
-    },
-  });
-
-  if (!editor) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center p-4">
-        <h1 className="mb-8 text-4xl font-bold">Documents</h1>
-        <div className="w-full max-w-4xl">
-          <div className="h-96 w-full animate-pulse rounded-lg bg-gray-200" />
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-start p-4">
