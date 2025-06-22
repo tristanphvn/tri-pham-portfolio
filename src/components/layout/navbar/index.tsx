@@ -15,6 +15,10 @@ const navbarList = [
     link: '/',
     name: 'About',
   },
+  {
+    link: '/documents',
+    name: 'Documents',
+  },
 ];
 
 const Navbar = ({ isScrolled }: { isScrolled: boolean }) => {
