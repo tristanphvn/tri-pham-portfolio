@@ -2,8 +2,8 @@ import { Button, Input, Textarea } from '@nextui-org/react';
 
 const AboutSendMessage = () => {
   return (
-    <div className="relative flex w-full flex-col gap-y-5 px-10 xl:flex-row xl:px-0">
-      <div className="flex w-full flex-col gap-y-5 rounded-2xl border border-black/10 px-16 py-10 shadow-outside dark:border-white/20 dark:shadow-white/15 xl:w-4/5 xl:pl-16 xl:pr-48">
+    <div className="relative flex w-full flex-col gap-y-5 bg-transparent px-10 xl:flex-row xl:px-0">
+      <div className="flex w-full flex-col gap-y-5 rounded-2xl border border-black/10 bg-white px-16 py-10 shadow-outside dark:border-white/20 dark:bg-black/80 dark:shadow-white/15 xl:w-4/5 xl:pl-16 xl:pr-48">
         <p className="text-4xl font-bold uppercase tracking-wide text-yankees-blue dark:text-white">
           SEND ME A MESSAGE
         </p>
@@ -32,7 +32,7 @@ const AboutSendMessage = () => {
           </div>
         </form>
       </div>
-      <div className="-right-10 bottom-14 flex w-full flex-col gap-y-3 rounded-2xl border border-black/10 bg-white px-10 py-14 dark:border-white/20 dark:bg-black xl:absolute xl:w-1/3">
+      <div className="-right-10 bottom-14 flex w-full flex-col gap-y-3 rounded-2xl border border-black/10 bg-white px-10 py-14 dark:border-white/20 dark:bg-black/80 xl:absolute xl:w-1/3">
         <p className="text-4xl font-bold uppercase tracking-wide text-yankees-blue dark:text-white">
           WORK WITH ME
         </p>
