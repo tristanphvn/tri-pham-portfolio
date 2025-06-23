@@ -18,32 +18,53 @@ interface MarkdownReaderProps {
   title?: string;
 }
 
+const slugify = (text: string) =>
+  text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
 // Custom components for ReactMarkdown
-const CustomH1 = ({ children, ...props }: any) => (
-  <h1
-    {...props}
-    className="mb-6 mt-8 flex items-center text-3xl font-bold text-gray-900"
-  >
-    <RocketLaunchIcon className="mr-4 h-8 w-8 text-blue-600" />
-    {children}
-  </h1>
-);
+const CustomH1 = ({ children, ...props }: any) => {
+  const text = String(children);
+  const id = slugify(text);
+  return (
+    <h1
+      {...props}
+      id={id}
+      className="mb-6 mt-8 flex items-center text-3xl font-bold text-gray-900"
+    >
+      <RocketLaunchIcon className="mr-4 h-8 w-8 text-blue-600" />
+      {children}
+    </h1>
+  );
+};
 
-const CustomH2 = ({ children, ...props }: any) => (
-  <h2
-    {...props}
-    className="mb-4 mt-8 flex items-center border-b border-gray-200 pb-2 text-2xl font-bold text-gray-900"
-  >
-    <BookOpenIcon className="mr-3 h-6 w-6 text-blue-600" />
-    {children}
-  </h2>
-);
+const CustomH2 = ({ children, ...props }: any) => {
+  const text = String(children);
+  const id = slugify(text);
+  return (
+    <h2
+      {...props}
+      id={id}
+      className="mb-4 mt-8 flex items-center border-b border-gray-200 pb-2 text-2xl font-bold text-gray-900"
+    >
+      <BookOpenIcon className="mr-3 h-6 w-6 text-blue-600" />
+      {children}
+    </h2>
+  );
+};
 
-const CustomH3 = ({ children, ...props }: any) => (
-  <h3 {...props} className="mb-3 mt-6 text-xl font-semibold text-gray-800">
-    {children}
-  </h3>
-);
+const CustomH3 = ({ children, ...props }: any) => {
+  const text = String(children);
+  const id = slugify(text);
+  return (
+    <h3
+      {...props}
+      id={id}
+      className="mb-3 mt-6 text-xl font-semibold text-gray-800"
+    >
+      {children}
+    </h3>
+  );
+};
 
 const CustomStrong = ({ children, ...props }: any) => (
   <strong
@@ -133,15 +154,21 @@ const MarkdownReader = ({ content, title }: MarkdownReaderProps) => {
 
   // Parse markdown content and extract headings for table of contents
   useEffect(() => {
-    const headings = content
-      .split('\n')
-      .filter((line) => line.startsWith('#'))
-      .map((line) => {
+    const lines = content.split('\n');
+    let inCodeBlock = false;
+    const headings: Array<{ id: string; text: string; level: number }> = [];
+
+    for (const line of lines) {
+      if (line.trim().startsWith('```')) {
+        inCodeBlock = !inCodeBlock;
+        // Avoid using 'continue' by skipping further processing in this iteration
+      } else if (!inCodeBlock && line.startsWith('#')) {
         const level = line.match(/^#+/)?.[0].length || 1;
         const text = line.replace(/^#+\s*/, '');
         const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-        return { id, text, level };
-      });
+        headings.push({ id, text, level });
+      }
+    }
     setTableOfContents(headings);
   }, [content]);
 
@@ -185,7 +212,7 @@ const MarkdownReader = ({ content, title }: MarkdownReaderProps) => {
                 <CodeBracketIcon className="mr-2 h-5 w-5" />
                 Table of Contents
               </h3>
-              <nav className="space-y-1">
+              <nav className="max-h-[calc(100vh-100px)] space-y-1 overflow-y-auto pr-2">
                 {tableOfContents.map((item) => (
                   <button
                     type="button"
