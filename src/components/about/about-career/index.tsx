@@ -1,58 +1,91 @@
-import { motion } from 'framer-motion';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import type { IFramework } from '@/interface/IFrameword';
+type SkillItem = { name: string; logo: string };
 
-const AboutCasser = () => {
-  const listFramework = [
-    {
-      logo: '/assets/icons/nextjs-original.svg',
-      name: 'NextJS',
-    },
-    {
-      logo: '/assets/icons/nestjs-original.svg',
-      name: 'NestJS',
-    },
-    {
-      logo: '/assets/icons/react-original.svg',
-      name: 'ReactJS',
-    },
-    {
-      logo: '/assets/icons/tailwindcss-original.svg',
-      name: 'Tailwindcss',
-    },
-    {
-      logo: '/assets/icons/jira-original.svg',
-      name: 'Jira',
-    },
-    {
-      logo: '/assets/icons/git-original.svg',
-      name: 'Git',
-    },
-  ];
+type SkillGroup = {
+  label: string;
+  items: SkillItem[];
+};
 
+const skillGroups: SkillGroup[] = [
+  {
+    label: 'Frontend',
+    items: [
+      { name: 'Next.js', logo: '/assets/icons/nextjs.svg' },
+      { name: 'React', logo: '/assets/icons/react.svg' },
+      { name: 'Tailwind CSS', logo: '/assets/icons/tailwindcss.svg' },
+    ],
+  },
+  {
+    label: 'Backend',
+    items: [{ name: 'NestJS', logo: '/assets/icons/nestjs.svg' }],
+  },
+  {
+    label: 'Tooling',
+    items: [
+      { name: 'Git', logo: '/assets/icons/git.svg' },
+      { name: 'Jira', logo: '/assets/icons/jira.svg' },
+      { name: 'Figma', logo: '/assets/icons/figma.svg' },
+      { name: 'Linear', logo: '/assets/icons/linear.svg' },
+    ],
+  },
+  {
+    label: 'Workspace',
+    items: [
+      { name: 'Neovim', logo: '/assets/icons/neovim.svg' },
+      { name: 'Cursor', logo: '/assets/icons/cursor.svg' },
+      { name: 'Claude', logo: '/assets/icons/claude.svg' },
+    ],
+  },
+];
+
+const AboutCareer = () => {
   return (
-    <div className="flex w-full flex-col gap-x-4 gap-y-5 px-10 xl:flex-row">
-      <div className="flex w-full items-center justify-center">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-6">
-          {listFramework.map((item: IFramework) => (
-            <motion.div
-              whileHover={{ scale: 1.2 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-              key={item.name}
-              className="flex flex-row items-center justify-center gap-x-2"
-            >
-              <LazyLoadImage
-                src={item.logo}
-                className="aspect-square h-8 w-8 object-contain"
-                effect="blur"
-              />
-              <p>{item.name}</p>
-            </motion.div>
-          ))}
-        </div>
+    <section className="w-full border-t border-yankees-blue/15 py-12 dark:border-white/10">
+      <div className="mb-8 flex items-baseline justify-between">
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-yankees-blue/60 dark:text-white/60">
+          &#x2F;&#x2F; stack
+        </p>
+        <p className="font-mono text-xs text-yankees-blue/40 dark:text-white/40">
+          {skillGroups.reduce((sum, g) => sum + g.items.length, 0)} items
+        </p>
       </div>
-    </div>
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {skillGroups.map((group) => (
+          <div
+            key={group.label}
+            className="border border-yankees-blue/15 bg-white/40 p-5 backdrop-blur-sm transition-colors hover:border-primary/60 dark:border-white/10 dark:bg-white/[0.02]"
+          >
+            <div className="mb-4 flex items-center justify-between">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary">
+                {group.label}
+              </p>
+              <span className="font-mono text-[11px] text-yankees-blue/40 dark:text-white/40">
+                0{group.items.length}
+              </span>
+            </div>
+            <ul className="flex flex-col gap-y-3">
+              {group.items.map((item) => (
+                <li
+                  key={item.name}
+                  className="flex items-center gap-x-3 font-mono text-sm text-yankees-blue dark:text-white"
+                >
+                  <LazyLoadImage
+                    src={item.logo}
+                    alt={item.name}
+                    className="h-5 w-5 object-contain dark:invert"
+                    effect="blur"
+                  />
+                  <span>{item.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
-export default AboutCasser;
+
+export default AboutCareer;

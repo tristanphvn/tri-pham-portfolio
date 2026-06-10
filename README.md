@@ -1,222 +1,93 @@
-# Boilerplate and Starter for Next.js 14+, Tailwind CSS 3.4, and TypeScript.
+# tri-pham-portfolio
 
-### Features
+Personal portfolio of **Tri Pham** — full-stack engineer based in Ho Chi Minh City, working with Next.js on the frontend and NestJS on the backend.
 
-Developer experience first, extremely flexible code structure and only keep what you need:
+Live: _coming soon_ · Source: [github.com/TriPham9001/tri-pham-portfolio](https://github.com/TriPham9001/tri-pham-portfolio)
 
-- ⚡ [Next.js](https://nextjs.org) with App Router support
-- 🔥 Type checking [TypeScript](https://www.typescriptlang.org)
-- 💎 Integrate with [Tailwind CSS](https://tailwindcss.com)
-- ✅ Strict Mode for TypeScript and React 18
-- 🔒 Authentication with [Clerk](https://clerk.com?utm_source=github&utm_medium=sponsorship&utm_campaign=nextjs-boilerplate): Sign up, Sign in, Sign out, Forgot password, Reset password, and more.
-- 👤 Passwordless Authentication with Magic Links, Multi-Factor Auth (MFA), Social Auth (Google, Facebook, Twitter, GitHub, Apple, and more), Passwordless login with Passkeys, User Impersonation
-- 📦 Type-safe ORM with DrizzleORM, compatible with SQLite, PostgreSQL, and MySQL
-- 💽 Global Database with [Turso](https://turso.tech/?utm_source=nextjsstarterbp)
-- 🌐 Multi-language (i18n) with [next-intl](https://next-intl-docs.vercel.app/) and [Crowdin](https://l.crowdin.com/next-js)
-- ♻️ Type-safe environment variables with T3 Env
-- ⌨️ Form handling with React Hook Form
-- 🔴 Validation library with Zod
-- 📏 Linter with [ESLint](https://eslint.org) (default Next.js, Next.js Core Web Vitals, Tailwind CSS and Airbnb configuration)
-- 💖 Code Formatter with [Prettier](https://prettier.io)
-- 🦊 Husky for Git Hooks
-- 🚫 Lint-staged for running linters on Git staged files
-- 🚓 Lint git commit with Commitlint
-- 📓 Write standard compliant commit messages with Commitizen
-- 🦺 Unit Testing with Vitest and React Testing Library
-- 🧪 Integration and E2E Testing with Playwright
-- 👷 Run tests on pull request with GitHub Actions
-- 🎉 Storybook for UI development
-- 🚨 Error Monitoring with [Sentry](https://sentry.io/for/nextjs/?utm_source=github&utm_medium=paid-community&utm_campaign=general-fy25q1-nextjs&utm_content=github-banner-nextjsboilerplate-logo)
-- ☂️ Code coverage with [Codecov](https://about.codecov.io/codecov-free-trial/?utm_source=github&utm_medium=paid-community&utm_campaign=general-fy25q1-nextjs&utm_content=github-banner-nextjsboilerplate-logo)
-- 📝 Logging with Pino.js and Log Management with [Better Stack](https://betterstack.com/?utm_source=github&utm_medium=sponsorship&utm_campaign=next-js-boilerplate)
-- 🖥️ Monitoring as Code with [Checkly](https://www.checklyhq.com/?utm_source=github&utm_medium=sponsorship&utm_campaign=next-js-boilerplate)
-- 🎁 Automatic changelog generation with Semantic Release
-- 🔍 Visual testing with Percy (Optional)
-- 💡 Absolute Imports using `@` prefix
-- 🗂 VSCode configuration: Debug, Settings, Tasks and Extensions
-- 🤖 SEO metadata, JSON-LD and Open Graph tags
-- 🗺️ Sitemap.xml and robots.txt
-- ⌘ Database exploration with Drizzle Studio and CLI migration tool with Drizzle Kit
-- ⚙️ [Bundler Analyzer](https://www.npmjs.com/package/@next/bundle-analyzer)
-- 🌈 Include a FREE minimalist theme
-- 💯 Maximize lighthouse score
+## What's in it
 
-Built-in feature from Next.js:
+- **About** — short intro, current stack, downloadable resume.
+- **Documents** — working notes I keep while learning a framework (Next.js 15, NestJS v10).
+- **Contact** — form wired to EmailJS so messages land directly in my inbox.
 
-- ☕ Minify HTML & CSS
-- 💨 Live reload
-- ✅ Cache busting
+## Stack
 
-### Philosophy
+- **Framework**: Next.js 15 (App Router, React 19)
+- **Styling**: Tailwind CSS, Geist Mono + Poppins via `next/font`
+- **State / forms**: React Hook Form + Zod
+- **Animation**: Framer Motion
+- **Email**: EmailJS (client-side, free tier)
+- **Tooling**: TypeScript, ESLint (Airbnb), Prettier, Husky, Commitlint
 
-- Nothing is hidden from you, so you have the freedom to make the necessary adjustments to fit your needs and preferences.
-- Easy to customize
-- Minimal code
-- SEO-friendly
-- 🚀 Production-ready
+The design leans brutalist — monospace accents, hard 1px borders, flat backgrounds, a single coral accent (`#FF6464`). No glass, no shadows.
 
-### Requirements
+## Run it locally
 
-- Node.js 20+ and npm
+Requires Node.js 20+.
 
-### Getting started
-
-Run the following command on your local environment:
-
-```shell
-git clone https://github.com/TriPham9001/portfolio-next-app.git
-cd portfolio-next-app.
+```bash
+git clone git@github.com:TriPham9001/tri-pham-portfolio.git
+cd tri-pham-portfolio
 npm install
-```
-
-Then, you can run the project locally in development mode with live reload by executing:
-
-```shell
+cp .env.example .env.local   # fill in the EmailJS keys (see below)
 npm run dev
 ```
 
-Open http://localhost:3000 with your favorite browser to see your project.
+Open http://localhost:3000.
 
-### Set up authentication
+## Environment
 
-Create a Clerk account at [Clerk.com](https://clerk.com?utm_source=github&utm_medium=sponsorship&utm_campaign=nextjs-boilerplate) and create a new application in Clerk Dashboard. Then, copy `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` into `.env.local` file (not tracked by Git):
+The contact form needs an EmailJS account (free tier — 200 emails/month).
 
-```shell
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_pub_key
-CLERK_SECRET_KEY=your_clerk_secret_key
+1. Create a service + template at <https://www.emailjs.com/>.
+2. The template must reference the variables `from_name`, `from_email`, `message`.
+3. Copy the IDs into `.env.local`:
+
+```
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=...
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=...
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=...
 ```
 
-Now, you have a fully working authentication system with Next.js: Sign up, Sign in, Sign out, Forgot password, Reset password, Update profile, Update password, Update email, Delete account, and more.
+The values are validated at build time via `@t3-oss/env-nextjs`, so the app will refuse to start if any are missing.
 
-### Translation (i18n) setup
+## Useful scripts
 
-For translation, the project uses `next-intl` combined with [Crowdin](https://l.crowdin.com/next-js). As a developer, you only need to take care of the English (or another default language) version. Other languages are automatically generated and handled by Crowdin. You can use Crowdin to collaborate with your translation team or translate the messages yourself with the help of machine translation.
+| Command              | What it does                          |
+| -------------------- | ------------------------------------- |
+| `npm run dev`        | Dev server (Turbopack)                |
+| `npm run build`      | Production build                      |
+| `npm run start`      | Serve production build                |
+| `npm run lint`       | ESLint                                |
+| `npm run check-types`| TypeScript check (no emit)            |
+| `npm run test`       | Jest unit tests                       |
+| `npm run test:e2e`   | Playwright E2E                        |
+| `npm run build-stats`| Build + bundle analyzer               |
 
-To set up translation (i18n), create an account at [Crowdin.com](https://l.crowdin.com/next-js) and create a new project. In the newly created project, you will able to find the project ID. You'll also require to create a new Personal Access Tokens by going to Account Settings > API. Then, in your GitHub Actions, you need to define the following environment variables `CROWDIN_PROJECT_ID` and `CROWDIN_PERSONAL_TOKEN`.
+## Project layout
 
-After defining the environment variables in your GitHub Actions, your localization files will be synchronized with Crowdin everytime you push a new commit to the `main` branch.
-
-### Project structure
-
-```shell
-.
-├── README.md                       # README file
-├── .github                         # GitHub folder
-├── .husky                          # Husky configuration
-├── .storybook                      # Storybook folder
-├── .vscode                         # VSCode configuration
-├── migrations                      # Database migrations
-├── public                          # Public assets folder
-├── scripts                         # Scripts folder
-├── src
-│   ├── app                         # Next JS App (App Router)
-│   ├── components                  # React components
-│   ├── libs                        # 3rd party libraries configuration
-│   ├── locales                     # Locales folder (i18n messages)
-│   ├── models                      # Database models
-│   ├── styles                      # Styles folder
-│   ├── templates                   # Templates folder
-│   ├── types                       # Type definitions
-│   ├── utils                       # Utilities folder
-│   └── validations                 # Validation schemas
-├── tests
-│   ├── e2e                         # E2E tests, also includes Monitoring as Code
-│   └── integration                 # Integration tests
-├── tailwind.config.js              # Tailwind CSS configuration
-└── tsconfig.json                   # TypeScript configuration
+```
+src/
+├── app/
+│   ├── (default)/          # routes sharing the main layout
+│   │   ├── documents/      # /documents + nested doc pages
+│   │   └── page.tsx        # about page
+│   ├── layout.tsx          # root layout, fonts, providers
+│   └── provider.tsx        # NextUI + theme + react-query + toast
+├── components/
+│   ├── about/              # hero, stack, contact form
+│   ├── documents/          # docs landing
+│   ├── markdown-reader/    # markdown renderer with TOC
+│   └── layout/             # navbar, footer
+├── data/markdown/          # notes content (English)
+├── libs/Env.mjs            # T3 Env — validated env vars
+└── styles/global.css       # Tailwind entry
 ```
 
-### Customization
+## Status
 
-You can easily configure Next js Boilerplate by making a search in the whole project with `FIXME:` for making quick customization. Here is some of the most important files to customize:
+Active. Things I'm still planning to add: a real **Projects** section with case studies, custom domain, blog.
 
-- `public/apple-touch-icon.png`, `public/favicon.ico`, `public/favicon-16x16.png` and `public/favicon-32x32.png`: your website favicon, you can generate from https://favicon.io/favicon-converter/
-- `src/utils/AppConfig.ts`: configuration file
-- `src/templates/BaseTemplate.tsx`: default theme
-- `next-sitemap.config.js`: sitemap configuration
-- `.env`: default environment variables
+## License
 
-You have access to the whole code source if you need further customization. The provided code is only example for you to start your project. The sky is the limit 🚀.
-
-### Commit Message Format
-
-The project enforces [Conventional Commits](https://www.conventionalcommits.org/) specification. This means that all your commit messages must be formatted according to the specification. To help you write commit messages, the project uses [Commitizen](https://github.com/commitizen/cz-cli), an interactive CLI that guides you through the commit process. To use it, run the following command:
-
-```shell
-npm run commit
-```
-
-One of the benefits of using Conventional Commits is that it allows us to automatically generate a `CHANGELOG` file. It also allows us to automatically determine the next version number based on the types of commits that are included in a release.
-
-### Testing
-
-All unit tests are located with the source code inside the same directory. So, it makes it easier to find them. The project uses Jest and React Testing Library for unit testing. You can run the tests with:
-
-```shell
-npm run test
-```
-
-### Integration & E2E Testing
-
-The project uses Playwright for Integration and E2E testing. You can run the tests with:
-
-```shell
-npx playwright install # Only for the first time in a new environment
-npm run test:e2e
-```
-
-### Enable Edge runtime (optional)
-
-The App Router folder is compatible with the Edge runtime. You can enable it by uncommenting the following lines `src/app/layouts.tsx`:
-
-```tsx
-// export const runtime = 'edge';
-```
-
-### Deploy to production
-
-During the build process, the database migration is automatically executed. So, you don't need to run the migration manually. But, in your environment variable, `DATABASE_URL` and `DATABASE_AUTH_TOKEN` need to be defined.
-
-Then, you can generate a production build with:
-
-```shell
-$ npm run build
-```
-
-It generates an optimized production build of the boilerplate. For testing the generated build, you can run:
-
-```shell
-$ npm run start
-```
-
-You also need to defined the environment variables `CLERK_SECRET_KEY` using your own key.
-
-The command starts a local server with the production build. Then, you can now open http://localhost:3000 with your favorite browser to see the project.
-
-### Useful commands
-
-#### Bundle Analyzer
-
-NextJS Boilerplate comes with a built-in bundle analyzer. It can be used to analyze the size of your JavaScript bundles. To begin, run the following command:
-
-```shell
-npm run build-stats
-```
-
-By running the command, it'll automatically open a new browser window with the results.
-
-### Known warnings
-
-#### webpack.cache.PackFileCacheStrategy
-
-Warning: webpack.cache.PackFileCacheStrategy Serializing big strings (104kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
-
-This warning is caused by using `Clerk` and `next-intl` middlewares. It only happens when both middlewares are used together.
-
-### VSCode information (optional)
-
-If you are VSCode users, you can have a better integration with VSCode by installing the suggested extension in `.vscode/extension.json`. The starter code comes up with Settings for a seamless integration with VSCode. The Debug configuration is also provided for frontend and backend debugging experience.
-
-With the plugins installed on your VSCode, ESLint and Prettier can automatically fix the code and show you the errors. Same goes for testing, you can install VSCode Jest extension to automatically run your tests and it also show the code coverage in context.
-
-Pro tips: if you need a project wide type checking with TypeScript, you can run a build with <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> on Mac.
+Source code in this repo is private to the author. Brand assets in `public/assets/icons/` come from [Simple Icons](https://simpleicons.org/) (CC0).

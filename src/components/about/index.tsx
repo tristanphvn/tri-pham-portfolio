@@ -1,14 +1,14 @@
 'use client';
 
-import AboutCasser from './about-career';
+import AboutCareer from './about-career';
 import AboutMe from './about-me';
 import AboutSendMessage from './about-send-message';
 
 const About = () => {
   return (
-    <div className="flex w-full flex-col gap-y-12">
+    <div className="flex w-full flex-col">
       <AboutMe />
-      <AboutCasser />
+      <AboutCareer />
       <AboutSendMessage />
     </div>
   );

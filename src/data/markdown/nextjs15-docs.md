@@ -1,47 +1,47 @@
-# 📘 Tài Liệu Next.js 15 (Tổng Quan & Hướng Dẫn Cơ Bản)
+# Next.js 15 — Overview & Quick Reference
 
-## ✅ 1. Giới Thiệu
-**Next.js** là một framework React được phát triển bởi Vercel, hỗ trợ cả **render phía server (SSR)**, **static site generation (SSG)**, **incremental static regeneration (ISR)** và **client-side rendering (CSR)**.
+## 1. Introduction
+**Next.js** is a React framework built by Vercel that supports **server-side rendering (SSR)**, **static site generation (SSG)**, **incremental static regeneration (ISR)**, and **client-side rendering (CSR)** in a single app.
 
-### 🎯 Đặc điểm chính của Next.js 15:
-- **React Server Components (RSC)**: Hỗ trợ toàn diện cho server-side rendering
-- **App Router**: Hệ thống routing mới với file-based routing
-- **Turbopack**: Bundler mới nhanh hơn Webpack
-- **Partial Prerendering**: Tối ưu hóa hiệu năng với hybrid rendering
-- **Server Actions**: Xử lý form và mutations trên server
-- **Metadata API**: SEO và metadata management
-- **Image Optimization**: Tối ưu hóa hình ảnh tự động
-- **Font Optimization**: Tối ưu hóa font loading
+### Key features in Next.js 15:
+- **React Server Components (RSC)**: first-class server-side rendering
+- **App Router**: file-based routing with nested layouts
+- **Turbopack**: faster bundler that replaces Webpack in dev
+- **Partial Prerendering**: hybrid static + dynamic rendering for performance
+- **Server Actions**: server-side form handling and mutations
+- **Metadata API**: SEO and metadata management
+- **Image Optimization**: automatic image optimization
+- **Font Optimization**: automatic font loading
 
-## 📦 2. Cài Đặt Dự Án Next.js 15
+## 2. Setting Up a Next.js 15 Project
 
-### Sử dụng create-next-app (Khuyến nghị)
+### Using create-next-app (recommended)
 ```bash
-# Tạo dự án mới với TypeScript
+# Create a new project with TypeScript
 npx create-next-app@latest my-next15-app --typescript --tailwind --eslint
 
-# Hoặc với các tùy chọn tương tác
+# Or use the interactive prompts
 npx create-next-app@latest my-next15-app
 
-# Di chuyển vào thư mục dự án
+# Move into the project directory
 cd my-next15-app
 
-# Chạy development server
+# Start the dev server
 npm run dev
 ```
 
-### Cài đặt thủ công
+### Manual installation
 ```bash
 npm init -y
 npm install next@latest react@latest react-dom@latest
 npm install -D typescript @types/react @types/node
 ```
 
-## 🗂️ 3. Cấu Trúc Thư Mục Mặc Định
+## 3. Default Folder Structure
 
 ```
 my-next15-app/
-├── app/                    # App Router (mới)
+├── app/                    # App Router (new)
 │   ├── globals.css        # Global styles
 │   ├── layout.tsx         # Root layout
 │   ├── page.tsx           # Home page
@@ -61,9 +61,9 @@ my-next15-app/
 └── package.json           # Dependencies
 ```
 
-## ⚙️ 4. Các Tính Năng Mới Trong Next.js 15
+## 4. What's New in Next.js 15
 
-### 🧩 a. React Server Components (RSC) Mạnh Mẽ Hơn
+### a. Stronger React Server Components (RSC)
 ```tsx
 // app/page.tsx
 import { Suspense } from 'react';
@@ -105,16 +105,16 @@ export default function Page() {
 }
 ```
 
-### 🚀 b. Turbopack - Bundler Mới
+### b. Turbopack — the new bundler
 ```bash
-# Sử dụng Turbopack cho development
+# Use Turbopack for development
 npm run dev -- --turbo
 
-# Hoặc set environment variable
+# Or via environment variable
 NEXT_BUILDER=turbopack npm run dev
 ```
 
-### 🔄 c. Server Actions
+### c. Server Actions
 ```tsx
 // app/actions.ts
 'use server';
@@ -146,7 +146,7 @@ export default function CreatePost() {
 }
 ```
 
-### 📊 d. Partial Prerendering
+### d. Partial Prerendering
 ```tsx
 // app/page.tsx
 import { Suspense } from 'react';
@@ -157,7 +157,7 @@ export default function Page() {
     <div>
       <h1>Welcome to our site</h1>
       <p>This content is prerendered for better performance.</p>
-      
+
       {/* Dynamic content (streamed) */}
       <Suspense fallback={<div>Loading recommendations...</div>}>
         <Recommendations />
@@ -179,9 +179,9 @@ async function Recommendations() {
 }
 ```
 
-## 📄 5. Routing Trong App Router
+## 5. Routing in the App Router
 
-### File-based Routing
+### File-based routing
 ```tsx
 // app/about/page.tsx
 export default function About() {
@@ -239,20 +239,20 @@ export default function BlogLayout({
 }
 ```
 
-## 🧠 6. Data Fetching (Server-Side)
+## 6. Data Fetching (Server-Side)
 
-### Fetch với Caching
+### Fetch with caching
 ```tsx
 // app/posts/page.tsx
 async function getPosts() {
   const res = await fetch('https://api.example.com/posts', {
     next: { revalidate: 3600 }, // Revalidate every hour
   });
-  
+
   if (!res.ok) {
     throw new Error('Failed to fetch posts');
   }
-  
+
   return res.json();
 }
 
@@ -272,7 +272,7 @@ export default async function PostsPage() {
 }
 ```
 
-### Parallel Data Fetching
+### Parallel data fetching
 ```tsx
 // app/dashboard/page.tsx
 async function getUsers() {
@@ -302,7 +302,7 @@ export default async function Dashboard() {
 }
 ```
 
-## 🧪 7. Loading UI và Error Handling
+## 7. Loading UI and Error Handling
 
 ### Loading UI
 ```tsx
@@ -361,11 +361,11 @@ export default function NotFound() {
 }
 ```
 
-## 🎨 8. Styling
+## 8. Styling
 
 ### Tailwind CSS
 ```bash
-# Cài đặt Tailwind CSS
+# Install Tailwind CSS
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 ```
@@ -450,9 +450,9 @@ export default function Button({ children, variant = 'primary' }: {
 }
 ```
 
-## 🔐 9. Authentication & Authorization
+## 9. Authentication & Authorization
 
-### NextAuth.js Integration
+### NextAuth.js integration
 ```bash
 npm install next-auth
 ```
@@ -500,9 +500,9 @@ export default function AuthButton() {
 }
 ```
 
-## 🧪 10. Middleware
+## 10. Middleware
 
-### Authentication Middleware
+### Authentication middleware
 ```ts
 // middleware.ts
 import { NextResponse } from 'next/server';
@@ -517,7 +517,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  // Redirect authenticated users from login page
+  // Redirect authenticated users away from the login page
   if (pathname === '/login' && isAuthenticated) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
@@ -530,7 +530,7 @@ export const config = {
 };
 ```
 
-### Internationalization Middleware
+### Internationalization middleware
 ```ts
 // middleware.ts
 import { NextResponse } from 'next/server';
@@ -560,9 +560,9 @@ export const config = {
 };
 ```
 
-## 🧑‍💻 11. Cấu Hình `next.config.js`
+## 11. Configuring `next.config.js`
 
-### Cấu hình cơ bản
+### Basic configuration
 ```js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -620,7 +620,7 @@ const nextConfig = {
 module.exports = nextConfig;
 ```
 
-### Cấu hình nâng cao
+### Advanced configuration
 ```js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -663,17 +663,17 @@ const nextConfig = {
 module.exports = nextConfig;
 ```
 
-## 📤 12. Triển Khai (Deployment)
+## 12. Deployment
 
-### Vercel (Khuyến nghị)
+### Vercel (recommended)
 ```bash
-# Cài đặt Vercel CLI
+# Install the Vercel CLI
 npm i -g vercel
 
 # Deploy
 vercel
 
-# Hoặc deploy production
+# Or deploy to production
 vercel --prod
 ```
 
@@ -735,7 +735,7 @@ ENV HOSTNAME "0.0.0.0"
 CMD ["node", "server.js"]
 ```
 
-### Environment Variables
+### Environment variables
 ```bash
 # .env.local
 DATABASE_URL=postgresql://user:password@localhost:5432/mydb
@@ -743,9 +743,9 @@ NEXTAUTH_SECRET=your-secret-key
 NEXTAUTH_URL=http://localhost:3000
 ```
 
-## 🧪 13. Testing
+## 13. Testing
 
-### Unit Testing với Jest
+### Unit testing with Jest
 ```bash
 npm install -D jest @testing-library/react @testing-library/jest-dom
 ```
@@ -753,7 +753,7 @@ npm install -D jest @testing-library/react @testing-library/jest-dom
 ```tsx
 // __tests__/Button.test.tsx
 import { render, screen } from '@testing-library/react';
-import Button from '../components/Button'Hoặc set environment variable;
+import Button from '../components/Button';
 
 describe('Button', () => {
   it('renders correctly', () => {
@@ -769,7 +769,7 @@ describe('Button', () => {
 });
 ```
 
-### E2E Testing với Playwright
+### E2E testing with Playwright
 ```bash
 npm install -D @playwright/test
 npx playwright install
@@ -792,7 +792,7 @@ test('navigation works', async ({ page }) => {
 });
 ```
 
-## 📊 14. Performance Optimization
+## 14. Performance Optimization
 
 ### Image Optimization
 ```tsx
@@ -851,9 +851,9 @@ npm run build
 npm run analyze
 ```
 
-## 🔧 15. Debugging & Development
+## 15. Debugging & Development
 
-### Debug Configuration
+### Debug configuration
 ```json
 // .vscode/launch.json
 {
@@ -879,7 +879,7 @@ npm run analyze
 }
 ```
 
-### Development Tools
+### Development tools
 ```bash
 # Check for TypeScript errors
 npm run type-check
@@ -894,7 +894,7 @@ npm run format
 npm run build:analyze
 ```
 
-## 📚 Tài Nguyên Học Tập
+## Learning Resources
 - **Official Docs**: https://nextjs.org/docs
 - **Blog**: https://nextjs.org/blog
 - **Examples**: https://github.com/vercel/next.js/tree/canary/examples
@@ -902,14 +902,14 @@ npm run build:analyze
 - **Discord**: https://discord.gg/nextjs
 - **GitHub**: https://github.com/vercel/next.js
 
-## 🎯 Best Practices
-1. **Sử dụng App Router** cho dự án mới
-2. **Implement Server Components** khi có thể
-3. **Sử dụng Server Actions** cho form handling
-4. **Optimize images** với Next.js Image component
-5. **Implement proper error boundaries** và loading states
-6. **Use TypeScript** cho type safety
+## Best Practices
+1. **Use the App Router** for new projects
+2. **Reach for Server Components** whenever you can
+3. **Prefer Server Actions** for form handling
+4. **Optimize images** with the Next.js Image component
+5. **Set up proper error boundaries** and loading states
+6. **Use TypeScript** for type safety
 7. **Follow the file-based routing** conventions
-8. **Implement proper SEO** với Metadata API
-9. **Use environment variables** cho configuration
-10. **Write tests** cho critical functionality
+8. **Implement proper SEO** via the Metadata API
+9. **Use environment variables** for configuration
+10. **Write tests** for critical functionality

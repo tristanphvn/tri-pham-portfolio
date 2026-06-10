@@ -6,13 +6,20 @@ import 'react-quill/dist/quill.snow.css';
 import 'highlight.js/styles/github-dark.css';
 
 import type { Metadata } from 'next';
-import { Poppins } from 'next/font/google';
+import { Geist_Mono, Poppins } from 'next/font/google';
 
 import Provider from './provider';
 
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-poppins',
+});
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-mono',
 });
 
 export const metadata: Metadata = {
@@ -28,8 +35,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={poppins.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${poppins.variable} ${geistMono.variable} font-sans antialiased`}
+      >
         <Provider>{props.children}</Provider>
       </body>
     </html>
