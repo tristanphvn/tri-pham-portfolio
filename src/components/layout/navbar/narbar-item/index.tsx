@@ -17,18 +17,29 @@ const NavbarItem = ({
 }) => {
   const pathname = usePathname();
   const { link, name } = item;
-  const isActive = pathname === link || pathname.startsWith(`${link}/`);
+  const isActive =
+    link === '/'
+      ? pathname === '/'
+      : pathname === link || pathname.startsWith(`${link}/`);
 
   return (
     <Link
       href={link}
       onClick={() => setIsOpen?.(false)}
       className={clsx(
-        'rounded-sm p-2',
-        isActive ? 'text-primary' : 'text-black dark:text-white'
+        'group relative font-mono text-sm uppercase tracking-[0.14em] transition-colors',
+        isActive
+          ? 'text-primary'
+          : 'text-yankees-blue/70 hover:text-yankees-blue dark:text-white/70 dark:hover:text-white'
       )}
     >
-      <p className="text-xl font-medium">{name}</p>
+      {name}
+      <span
+        className={clsx(
+          'absolute -bottom-1 left-0 h-px bg-current transition-all duration-200',
+          isActive ? 'w-full' : 'w-0 group-hover:w-full'
+        )}
+      />
     </Link>
   );
 };

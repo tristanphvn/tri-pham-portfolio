@@ -1,37 +1,37 @@
-# 📘 Tài liệu NestJS v10 (Tổng Quan)
+# NestJS v10 — Overview
 
-## 🔰 1. Giới thiệu NestJS
+## 1. Introduction
 
-- **NestJS** là một framework phát triển backend dùng **TypeScript**, xây dựng dựa trên **Express.js** hoặc **Fastify**.
-- Thiết kế theo **kiến trúc OOP + FP + FRP** và đặc biệt là **kiến trúc mô-đun**, rất phù hợp cho ứng dụng doanh nghiệp lớn.
-- **NestJS v10** ra mắt với nhiều cải tiến về hiệu suất, cấu trúc dự án, dependency injection, và các khả năng mở rộng.
+- **NestJS** is a backend framework written in **TypeScript**, built on top of **Express.js** or **Fastify**.
+- It follows an **OOP + FP + FRP** design philosophy, with a strong emphasis on **modular architecture** — a great fit for large enterprise applications.
+- **NestJS v10** brings improvements to performance, project structure, dependency injection, and overall extensibility.
 
 ---
 
-## 🧱 2. Cài đặt NestJS v10
+## 2. Installing NestJS v10
 
 ```bash
 npm i -g @nestjs/cli
 nest new my-app
 ```
 
-Chọn kiểu dự án `npm`, `yarn`, hoặc `pnpm` tùy bạn.
+Pick your preferred package manager: `npm`, `yarn`, or `pnpm`.
 
 ---
 
-## ⚙️ 3. Cấu trúc dự án NestJS
+## 3. Project Structure
 
 ```
 src/
-├— app.controller.ts      // Controller xử lý request
+├— app.controller.ts      // Handles incoming requests
 ├— app.service.ts         // Business logic
 ├— app.module.ts          // Root module
-└— main.ts                // File khởi động ứng dụng
+└— main.ts                // Application entry point
 ```
 
 ---
 
-## 📦 4. Module trong NestJS
+## 4. Modules
 
 ```ts
 @Module({
@@ -42,14 +42,14 @@ src/
 export class AppModule {}
 ```
 
-- Mọi thành phần trong NestJS đều nằm trong **Module**.
-- Có thể chia nhỏ ra thành các feature modules như `UsersModule`, `AuthModule` v.v.
+- Everything in NestJS lives inside a **Module**.
+- Larger apps are split into feature modules such as `UsersModule`, `AuthModule`, etc.
 
 ---
 
-## 🔄 5. Dependency Injection
+## 5. Dependency Injection
 
-- NestJS v10 sử dụng Dependency Injection mạnh mẽ:
+- NestJS v10 ships with a powerful Dependency Injection system:
 
 ```ts
 @Injectable()
@@ -60,7 +60,7 @@ export class AppService {
 }
 ```
 
-Controller sử dụng:
+Consumed from a controller:
 
 ```ts
 @Controller()
@@ -71,7 +71,7 @@ export class AppController {
 
 ---
 
-## 📡 6. Controller và Routes
+## 6. Controllers & Routes
 
 ```ts
 @Controller('users')
@@ -90,16 +90,16 @@ export class UsersController {
 
 ---
 
-## 🧪 7. Pipes, Guards, Interceptors, Filters
+## 7. Pipes, Guards, Interceptors, Filters
 
-NestJS cung cấp các cơ chế mạnh mẽ để xử lý:
+NestJS provides first-class building blocks for request handling:
 
-- **Guards** → kiểm tra quyền truy cập
-- **Pipes** → validate và transform dữ liệu
-- **Interceptors** → xử lý trước/sau request
-- **Filters** → xử lý exception
+- **Guards** → authorization checks
+- **Pipes** → validation and data transformation
+- **Interceptors** → run logic before/after a request
+- **Filters** → centralized exception handling
 
-Ví dụ Pipe:
+Pipe example:
 
 ```ts
 @UsePipes(new ValidationPipe())
@@ -109,12 +109,12 @@ create(@Body() createUserDto: CreateUserDto) {}
 
 ---
 
-## 🔐 8. Authentication & Authorization
+## 8. Authentication & Authorization
 
-NestJS hỗ trợ:
+NestJS integrates well with:
 
-- **Passport.js** để auth (JWT, Google, etc.)
-- Guard để kiểm soát truy cập:
+- **Passport.js** for auth strategies (JWT, Google, etc.)
+- Guards for access control:
 
 ```ts
 @UseGuards(AuthGuard('jwt'))
@@ -126,7 +126,7 @@ getProfile(@Request() req) {
 
 ---
 
-## ⚡ 9. Performance với Fastify (thay Express)
+## 9. Performance with Fastify (instead of Express)
 
 ```ts
 // main.ts
@@ -139,13 +139,13 @@ async function bootstrap() {
 }
 ```
 
-Fastify giúp tăng hiệu suất đáng kể cho API lớn.
+Fastify delivers a significant performance boost for high-throughput APIs.
 
 ---
 
-## 🔄 10. CQRS (Command Query Responsibility Segregation)
+## 10. CQRS (Command Query Responsibility Segregation)
 
-NestJS hỗ trợ **CQRS pattern** thông qua thư viện `@nestjs/cqrs` giúp tách logic đọc và ghi.
+NestJS supports the **CQRS pattern** via the `@nestjs/cqrs` package — useful for separating read and write logic.
 
 ```bash
 npm i @nestjs/cqrs
@@ -168,9 +168,9 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
 
 ---
 
-## 🌐 11. GraphQL
+## 11. GraphQL
 
-NestJS hỗ trợ cả:
+NestJS supports both:
 
 - Schema-first
 - Code-first
@@ -191,9 +191,9 @@ npm i @nestjs/graphql @nestjs/apollo graphql apollo-server-express
 
 ---
 
-## 🧪 12. Testing
+## 12. Testing
 
-NestJS dùng Jest:
+NestJS uses Jest out of the box:
 
 ```bash
 npm run test
@@ -220,23 +220,22 @@ describe('AppController', () => {
 
 ---
 
-## 🚀 13. Những cải tiến mới ở phiên bản v10
+## 13. What's New in v10
 
-- Hiệu năng cao hơn
-- Hỗ trợ tốt hơn cho Fastify
-- Cải tiến `Standalone App` bootstrapping
-- Tự động phát hiện và phân luồng khi build GraphQL schema
-- Giao diện `Injection Scopes` tốt hơn
-- Dependency Injection hoạt động hiệu quả hơn
-- Tích hợp tốt hơn với hệ thống microservices
+- Better runtime performance
+- Improved Fastify support
+- Refined `Standalone App` bootstrapping
+- Automatic detection and threading when building GraphQL schemas
+- Improved `Injection Scopes` API
+- More efficient Dependency Injection
+- Tighter integration with microservices
 
 ---
 
-## 📚 14. Tài nguyên chính thức
+## 14. Official Resources
 
-- [Trang chủ](https://nestjs.com/)
-- [Docs chính thức NestJS v10](https://docs.nestjs.com/)
+- [Homepage](https://nestjs.com/)
+- [Official NestJS v10 Docs](https://docs.nestjs.com/)
 - [GitHub](https://github.com/nestjs/nest)
 
 ---
-
