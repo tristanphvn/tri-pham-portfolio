@@ -1,34 +1,32 @@
 'use client';
 
-import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
-import { Button } from '@nextui-org/react';
-import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 const DarkModeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const handleClick = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
+  useEffect(() => setMounted(true), []);
+
+  const isDark = mounted && resolvedTheme === 'dark';
 
   return (
-    <Button isIconOnly className="bg-transparent" onClick={handleClick}>
-      <motion.div
-        key={theme === 'dark' ? 'moon' : 'bars'}
-        initial={{ opacity: 0, rotate: theme === 'dark' ? 180 : -180 }}
-        animate={{ opacity: 1, rotate: 0 }}
-        exit={{ opacity: 0, rotate: theme === 'dark' ? -180 : 180 }}
-        transition={{ duration: 0.5 }}
-      >
-        {theme === 'light' ? (
-          <SunIcon width={24} height={24} />
-        ) : (
-          <MoonIcon width={24} height={24} />
-        )}
-      </motion.div>
-    </Button>
+    <button
+      type="button"
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+      className="group inline-flex items-center gap-x-2 text-sm text-muted transition-colors hover:text-fg"
+    >
+      <span className="relative inline-block h-3.5 w-3.5 overflow-hidden rounded-full border border-current">
+        <span
+          className={`absolute inset-y-0 left-0 w-1/2 bg-current transition-transform duration-500 ${
+            isDark ? 'translate-x-full' : 'translate-x-0'
+          }`}
+        />
+      </span>
+      <span>{mounted ? (isDark ? 'Dark' : 'Light') : 'Theme'}</span>
+    </button>
   );
 };
 

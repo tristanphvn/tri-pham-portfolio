@@ -22,7 +22,7 @@ const CustomH1 = ({ children, ...props }: any) => {
     <h1
       {...props}
       id={slugify(text)}
-      className="mb-6 mt-10 text-3xl font-semibold tracking-tight text-yankees-blue dark:text-white"
+      className="mb-6 mt-12 text-3xl font-medium tracking-tight text-fg first:mt-0"
     >
       {children}
     </h1>
@@ -35,7 +35,7 @@ const CustomH2 = ({ children, ...props }: any) => {
     <h2
       {...props}
       id={slugify(text)}
-      className="mb-4 mt-10 border-b border-yankees-blue/15 pb-2 text-2xl font-semibold tracking-tight text-yankees-blue dark:border-white/10 dark:text-white"
+      className="mb-4 mt-14 scroll-mt-24 font-serif text-3xl italic text-fg"
     >
       {children}
     </h2>
@@ -48,7 +48,7 @@ const CustomH3 = ({ children, ...props }: any) => {
     <h3
       {...props}
       id={slugify(text)}
-      className="mb-3 mt-8 text-lg font-semibold tracking-tight text-yankees-blue dark:text-white"
+      className="mb-3 mt-10 scroll-mt-24 text-lg font-medium tracking-tight text-fg"
     >
       {children}
     </h3>
@@ -56,16 +56,13 @@ const CustomH3 = ({ children, ...props }: any) => {
 };
 
 const CustomStrong = ({ children, ...props }: any) => (
-  <strong
-    {...props}
-    className="font-semibold text-yankees-blue dark:text-white"
-  >
+  <strong {...props} className="font-medium text-fg">
     {children}
   </strong>
 );
 
 const CustomEm = ({ children, ...props }: any) => (
-  <em {...props} className="italic text-yankees-blue/80 dark:text-white/80">
+  <em {...props} className="italic">
     {children}
   </em>
 );
@@ -74,22 +71,20 @@ const CustomCode = ({ inline, className, children, ...props }: any) => {
   const match = /language-(\w+)/.exec(className || '');
   if (!inline && match) {
     return (
-      <div className="my-6 overflow-hidden border border-yankees-blue/20 dark:border-white/15">
-        <div className="flex items-center justify-between border-b border-yankees-blue/15 bg-neutral-100 px-4 py-2 dark:border-white/10 dark:bg-neutral-900">
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-yankees-blue/60 dark:text-white/60">
-            {match[1]}
-          </span>
+      <div className="my-8 overflow-hidden rounded-2xl bg-[#16161a]">
+        <div className="flex items-center justify-between px-5 pt-4">
+          <span className="font-mono text-xs text-neutral-400">{match[1]}</span>
           <button
             type="button"
             onClick={() =>
               navigator.clipboard.writeText(String(children).replace(/\n$/, ''))
             }
-            className="font-mono text-[11px] uppercase tracking-[0.2em] text-yankees-blue/60 transition-colors hover:text-primary dark:text-white/60"
+            className="text-xs text-neutral-400 transition-colors hover:text-neutral-100"
           >
-            copy
+            Copy
           </button>
         </div>
-        <pre className="overflow-x-auto bg-neutral-950 p-4 font-mono text-sm leading-relaxed text-neutral-100">
+        <pre className="overflow-x-auto px-5 pb-5 pt-3 font-mono text-[13px] leading-relaxed text-neutral-100 [&_.hljs]:bg-transparent [&_.hljs]:p-0">
           <code className={className} {...props}>
             {children}
           </code>
@@ -99,7 +94,7 @@ const CustomCode = ({ inline, className, children, ...props }: any) => {
   }
   return (
     <code
-      className="border border-yankees-blue/15 bg-neutral-100 px-1.5 py-0.5 font-mono text-[0.85em] text-yankees-blue dark:border-white/10 dark:bg-neutral-900 dark:text-white"
+      className="rounded-md bg-fg/[0.06] px-1.5 py-0.5 font-mono text-[0.85em] text-fg"
       {...props}
     >
       {children}
@@ -110,7 +105,7 @@ const CustomCode = ({ inline, className, children, ...props }: any) => {
 const CustomA = ({ children, ...props }: any) => (
   <a
     {...props}
-    className="text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary"
+    className="text-fg underline decoration-muted/50 underline-offset-4 transition-colors hover:decoration-accent"
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -119,17 +114,14 @@ const CustomA = ({ children, ...props }: any) => (
 );
 
 const CustomLi = ({ children, ...props }: any) => (
-  <li {...props} className="mb-2 ml-6 flex items-start">
-    <span className="mr-3 mt-1.5 inline-block h-1 w-1 flex-shrink-0 bg-primary" />
+  <li {...props} className="mb-2 flex items-start">
+    <span className="mr-3 mt-[0.7em] inline-block h-1 w-1 shrink-0 rounded-full bg-muted" />
     <span>{children}</span>
   </li>
 );
 
 const CustomP = ({ children, ...props }: any) => (
-  <p
-    {...props}
-    className="mb-5 leading-relaxed text-yankees-blue/80 dark:text-white/80"
-  >
+  <p {...props} className="mb-5 leading-relaxed text-muted">
     {children}
   </p>
 );
@@ -166,48 +158,59 @@ const MarkdownReader = ({ content, title }: MarkdownReaderProps) => {
   };
 
   return (
-    <section className="w-full pb-16 pt-8 xl:pb-24 xl:pt-16">
+    <section className="animate-fade-up">
       <Link
         href="/documents"
-        className="mb-6 inline-flex items-center gap-x-2 font-mono text-xs uppercase tracking-[0.2em] text-yankees-blue/60 transition-colors hover:text-primary dark:text-white/60"
+        className="group mb-10 inline-flex items-center gap-x-2 text-sm text-muted transition-colors hover:text-fg"
       >
-        <ArrowLeftIcon className="h-4 w-4" />
-        Back to documents
+        <ArrowLeftIcon className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-0.5" />
+        All notes
       </Link>
 
-      <div className="mb-6 flex items-baseline justify-between">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-yankees-blue/60 dark:text-white/60">
-          &#x2F;&#x2F; reference
-        </p>
-        <p className="font-mono text-xs text-yankees-blue/40 dark:text-white/40">
-          {tableOfContents.length} sections
-        </p>
-      </div>
-
-      <h1 className="mb-3 text-4xl font-semibold tracking-tight text-yankees-blue dark:text-white xl:text-5xl">
+      <h1 className="max-w-3xl text-4xl font-medium tracking-tight sm:text-5xl">
         {title ?? 'Reference'}
       </h1>
-      <div className="mb-10 h-px w-16 bg-primary" />
+      <p className="mb-16 mt-3 text-sm text-muted">
+        {tableOfContents.length} sections
+      </p>
 
-      <div className="grid grid-cols-1 gap-10 xl:grid-cols-[220px_1fr]">
-        <aside className="hidden xl:block">
-          <div className="sticky top-24">
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-yankees-blue/60 dark:text-white/60">
-              &#x2F;&#x2F; contents
-            </p>
-            <nav className="max-h-[calc(100vh-180px)] space-y-0.5 overflow-y-auto pr-2">
+      <div className="grid grid-cols-1 gap-16 xl:grid-cols-[1fr_220px]">
+        <article className="min-w-0 max-w-[68ch]">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeHighlight]}
+            components={{
+              h1: CustomH1,
+              h2: CustomH2,
+              h3: CustomH3,
+              strong: CustomStrong,
+              em: CustomEm,
+              code: CustomCode,
+              a: CustomA,
+              li: CustomLi,
+              p: CustomP,
+            }}
+          >
+            {content}
+          </ReactMarkdown>
+        </article>
+
+        <aside className="order-first hidden xl:order-none xl:block">
+          <div className="sticky top-12">
+            <p className="mb-4 text-sm font-medium">On this page</p>
+            <nav className="max-h-[calc(100vh-160px)] space-y-1 overflow-y-auto pr-2">
               {tableOfContents.map((item) => (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => scrollToSection(item.id)}
                   className={clsx(
-                    'block w-full border-l py-1.5 pr-2 text-left font-mono text-[12px] transition-colors',
+                    'block w-full py-1 text-left text-[13px] leading-snug transition-colors',
                     activeSection === item.id
-                      ? 'border-primary text-primary'
-                      : 'border-transparent text-yankees-blue/60 hover:border-yankees-blue/30 hover:text-yankees-blue dark:text-white/60 dark:hover:border-white/30 dark:hover:text-white'
+                      ? 'text-fg'
+                      : 'text-muted hover:text-fg'
                   )}
-                  style={{ paddingLeft: `${(item.level - 1) * 10 + 12}px` }}
+                  style={{ paddingLeft: `${(item.level - 1) * 12}px` }}
                 >
                   {item.text}
                 </button>
@@ -215,40 +218,6 @@ const MarkdownReader = ({ content, title }: MarkdownReaderProps) => {
             </nav>
           </div>
         </aside>
-
-        <article className="max-w-3xl">
-          <div className="prose prose-lg prose-headings:scroll-mt-24 max-w-none">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeHighlight]}
-              components={{
-                h1: CustomH1,
-                h2: CustomH2,
-                h3: CustomH3,
-                strong: CustomStrong,
-                em: CustomEm,
-                code: CustomCode,
-                a: CustomA,
-                li: CustomLi,
-                p: CustomP,
-              }}
-            >
-              {content}
-            </ReactMarkdown>
-          </div>
-
-          <div className="mt-12 flex items-center justify-between border-t border-yankees-blue/15 pt-6 dark:border-white/10">
-            <Link
-              href="/documents"
-              className="font-mono text-xs uppercase tracking-[0.2em] text-yankees-blue/60 transition-colors hover:text-primary dark:text-white/60"
-            >
-              ← All documents
-            </Link>
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-yankees-blue/40 dark:text-white/40">
-              {title}
-            </span>
-          </div>
-        </article>
       </div>
     </section>
   );

@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 250 249 246;
+    --fg: 28 27 25;
+    --muted: 112 108 101;
+    --accent: 200 76 38;
+  }
+
+  .dark {
+    --bg: 17 17 16;
+    --fg: 236 234 229;
+    --muted: 150 146 138;
+    --accent: 240 128 92;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-fg;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  ::selection {
+    background: rgb(var(--accent) / 0.2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  /* Underline that draws in from the left on hover */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.3s ease;
+  }
+
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+.Toastify__toast {
+  border-radius: 12px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  background: rgb(var(--fg));
+  color: rgb(var(--bg));
+  box-shadow: none;
+}
+
+.Toastify__close-button {
+  color: rgb(var(--bg));
+}

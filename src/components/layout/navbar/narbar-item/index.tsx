@@ -1,3 +1,5 @@
+'use client';
+
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -5,16 +7,9 @@ import { usePathname } from 'next/navigation';
 export interface Item {
   link: string;
   name: string;
-  setIsOpen?: (isOpen: boolean) => void;
 }
 
-const NavbarItem = ({
-  item,
-  setIsOpen,
-}: {
-  item: Item;
-  setIsOpen?: (isOpen: boolean) => void;
-}) => {
+const NavbarItem = ({ item }: { item: Item }) => {
   const pathname = usePathname();
   const { link, name } = item;
   const isActive =
@@ -25,21 +20,13 @@ const NavbarItem = ({
   return (
     <Link
       href={link}
-      onClick={() => setIsOpen?.(false)}
+      aria-current={isActive ? 'page' : undefined}
       className={clsx(
-        'group relative font-mono text-sm uppercase tracking-[0.14em] transition-colors',
-        isActive
-          ? 'text-primary'
-          : 'text-yankees-blue/70 hover:text-yankees-blue dark:text-white/70 dark:hover:text-white'
+        'transition-colors',
+        isActive ? 'text-fg' : 'text-muted hover:text-fg'
       )}
     >
       {name}
-      <span
-        className={clsx(
-          'absolute -bottom-1 left-0 h-px bg-current transition-all duration-200',
-          isActive ? 'w-full' : 'w-0 group-hover:w-full'
-        )}
-      />
     </Link>
   );
 };

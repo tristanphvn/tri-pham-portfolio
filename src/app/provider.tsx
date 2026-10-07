@@ -15,7 +15,7 @@ export default function Provider({ children }: Props) {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <NextUIProvider>
         <QueryClientProvider client={queryClient}>
           {children}
