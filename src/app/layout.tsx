@@ -1,19 +1,23 @@
 import '@/styles/global.css';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'react-toastify/dist/ReactToastify.css';
-import 'react-quill/dist/quill.snow.css';
 /* Highlight.js styles for syntax highlighting */
 import 'highlight.js/styles/github-dark.css';
 
 import type { Metadata } from 'next';
-import { Geist_Mono, Poppins } from 'next/font/google';
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
 
 import Provider from './provider';
 
-const poppins = Poppins({
+const geist = Geist({
   subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-  variable: '--font-poppins',
+  variable: '--font-sans',
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-serif',
 });
 
 const geistMono = Geist_Mono({
@@ -23,8 +27,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Tri Pham',
-  description: 'Portfolio by Tri Pham',
+  metadataBase: new URL('https://tristanpham.world'),
+  title: 'Tri Pham — Full-stack Engineer',
+  description:
+    'Tri Pham is a full-stack engineer in Ho Chi Minh City building web products with Next.js and NestJS.',
   icons: {
     icon: {
       url: '/favicon.ico',
@@ -37,7 +43,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${geist.variable} ${instrumentSerif.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <Provider>{props.children}</Provider>
       </body>

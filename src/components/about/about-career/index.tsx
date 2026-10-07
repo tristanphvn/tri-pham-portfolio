@@ -1,89 +1,65 @@
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Link from 'next/link';
 
-type SkillItem = { name: string; logo: string };
+import { experiences, stack } from '@/data/profile';
 
-type SkillGroup = {
-  label: string;
-  items: SkillItem[];
-};
-
-const skillGroups: SkillGroup[] = [
-  {
-    label: 'Frontend',
-    items: [
-      { name: 'Next.js', logo: '/assets/icons/nextjs.svg' },
-      { name: 'React', logo: '/assets/icons/react.svg' },
-      { name: 'Tailwind CSS', logo: '/assets/icons/tailwindcss.svg' },
-    ],
-  },
-  {
-    label: 'Backend',
-    items: [{ name: 'NestJS', logo: '/assets/icons/nestjs.svg' }],
-  },
-  {
-    label: 'Tooling',
-    items: [
-      { name: 'Git', logo: '/assets/icons/git.svg' },
-      { name: 'Jira', logo: '/assets/icons/jira.svg' },
-      { name: 'Figma', logo: '/assets/icons/figma.svg' },
-      { name: 'Linear', logo: '/assets/icons/linear.svg' },
-    ],
-  },
-  {
-    label: 'Workspace',
-    items: [
-      { name: 'Neovim', logo: '/assets/icons/neovim.svg' },
-      { name: 'Cursor', logo: '/assets/icons/cursor.svg' },
-      { name: 'Claude', logo: '/assets/icons/claude.svg' },
-    ],
-  },
-];
+import SectionTitle from '../section-title';
 
 const AboutCareer = () => {
   return (
-    <section className="w-full border-t border-yankees-blue/15 py-12 dark:border-white/10">
-      <div className="mb-8 flex items-baseline justify-between">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-yankees-blue/60 dark:text-white/60">
-          &#x2F;&#x2F; stack
-        </p>
-        <p className="font-mono text-xs text-yankees-blue/40 dark:text-white/40">
-          {skillGroups.reduce((sum, g) => sum + g.items.length, 0)} items
-        </p>
-      </div>
+    <section
+      id="experience"
+      aria-label="Experience"
+      className="scroll-mt-24 pt-24"
+    >
+      <SectionTitle>Experience</SectionTitle>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {skillGroups.map((group) => (
+      <ol className="group/list">
+        {experiences.map((item) => (
+          <li
+            key={item.company}
+            className="-mx-4 grid gap-y-2 rounded-2xl px-4 py-5 transition-[background-color,opacity] duration-300 hover:bg-fg/[0.035] sm:grid-cols-[8rem_1fr] sm:gap-x-6 lg:hover:!opacity-100 lg:group-hover/list:opacity-50"
+          >
+            <p className="pt-0.5 text-sm tabular-nums text-muted">
+              {item.period}
+            </p>
+            <div>
+              <h3 className="font-medium">
+                {item.role} <span className="text-muted">·</span> {item.company}
+              </h3>
+              <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">
+                {item.summary}
+              </p>
+              <p className="mt-3 text-sm text-muted/80">
+                {item.stack.join(' / ')}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <Link
+        href="/tri-pham.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group mt-6 inline-flex items-center gap-x-1.5 font-medium"
+      >
+        <span className="link-underline">Full résumé</span>
+        <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+          ↗
+        </span>
+      </Link>
+
+      <dl className="mt-16 grid gap-y-4 text-[0.95rem]">
+        {stack.map((group) => (
           <div
             key={group.label}
-            className="border border-yankees-blue/15 bg-white/40 p-5 backdrop-blur-sm transition-colors hover:border-primary/60 dark:border-white/10 dark:bg-white/[0.02]"
+            className="grid sm:grid-cols-[8rem_1fr] sm:gap-x-6"
           >
-            <div className="mb-4 flex items-center justify-between">
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary">
-                {group.label}
-              </p>
-              <span className="font-mono text-[11px] text-yankees-blue/40 dark:text-white/40">
-                0{group.items.length}
-              </span>
-            </div>
-            <ul className="flex flex-col gap-y-3">
-              {group.items.map((item) => (
-                <li
-                  key={item.name}
-                  className="flex items-center gap-x-3 font-mono text-sm text-yankees-blue dark:text-white"
-                >
-                  <LazyLoadImage
-                    src={item.logo}
-                    alt={item.name}
-                    className="h-5 w-5 object-contain dark:invert"
-                    effect="blur"
-                  />
-                  <span>{item.name}</span>
-                </li>
-              ))}
-            </ul>
+            <dt className="text-sm text-muted">{group.label}</dt>
+            <dd>{group.items.join(', ')}</dd>
           </div>
         ))}
-      </div>
+      </dl>
     </section>
   );
 };

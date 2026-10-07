@@ -10,25 +10,24 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Georgia', 'serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
-      height: {
-        'card-height': '238px',
-        'inner-card-height': '156px',
-      },
-      maxWidth: {
-        'card-width': '230px',
-      },
       colors: {
-        primary: '#FF6464',
-        'yankees-blue': '#21243D',
+        bg: 'rgb(var(--bg) / <alpha-value>)',
+        fg: 'rgb(var(--fg) / <alpha-value>)',
+        muted: 'rgb(var(--muted) / <alpha-value>)',
+        accent: 'rgb(var(--accent) / <alpha-value>)',
       },
-      borderRadius: {
-        '4xl': '32px',
+      keyframes: {
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(8px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
       },
-      boxShadow: {
-        outside: '0px 9px 20px 0px rgba(33, 36, 61, 0.15)',
+      animation: {
+        'fade-up': 'fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both',
       },
     },
   },
